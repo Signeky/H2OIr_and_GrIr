@@ -3,8 +3,8 @@ clear all; close all;
 
 
 %%Load data Ir(111) 125 K 
-%addpath U:\Documents\MATLAB\OpenAccess\Dynamics
-addpath Dynamics
+
+addpath Dynamics\Ir_and_GrIr
 fileListIr125 = {'dy019476.mat','dy019477.mat','dy019478.mat','dy019479.mat','dy019480.mat','dy019481.mat','dy019482.mat','dy019483.mat','dy019484.mat','dy019485.mat','dy019486.mat','dy019487.mat','dy019488.mat','dy019489'};  
 
 
