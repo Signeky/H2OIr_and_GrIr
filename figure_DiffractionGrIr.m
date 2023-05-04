@@ -1,6 +1,6 @@
 
 clear all; clf
-fileList = {'as010363','as010354'};
+fileList = {'as010363','as010365'};
 names = {'GrIr(111)','H_2O GrIr(111)'};
 
 colourList = 'rbgcmk';
