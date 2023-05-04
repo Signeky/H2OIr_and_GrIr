@@ -4,7 +4,7 @@ clear all; close all;
 x = linspace(2.8,800,800);
 
 
-addpath Dynamics
+addpath Dynamics\Ir_and_GrIr
 fileListIr135 = {'dy019490.mat','dy019491.mat','dy019492.mat','dy019493.mat','dy019494.mat','dy019495.mat','dy019496.mat','dy019497.mat','dy019498.mat','dy019499.mat','dy019500.mat','dy019501.mat','dy019502.mat','dy019503'};  
 
 %Sort dKs from low to high 
