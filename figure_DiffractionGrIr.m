@@ -52,9 +52,9 @@ IrGrH20_counts = meas.scan.counts;
 IrGrH20_DK = -2*k*cosd(22.2)*sind(IrGrH20_gamma);
 
 figure('units','centimeters','position',[4,2,16,14],'color','white','DefaultLineLineWidth',2,'DefaultTextFontSize',18);
-semilogy(IrGr_DK, IrGr_counts, 'displayname', names{1})
+semilogy(IrGr_DK, IrGr_counts, colourList(1), 'displayname', names{1})
 hold on
-semilogy(IrGrH20_DK, IrGrH20_counts, 'displayname', names{2})
+semilogy(IrGrH20_DK, IrGrH20_counts, colourList(2), 'displayname', names{2})
 hold off
 xlabel('\Delta K (A^{-1})')
 ylabel('Scattered signal (arb units)')
