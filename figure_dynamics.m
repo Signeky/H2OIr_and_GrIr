@@ -229,10 +229,27 @@ opts.MaxIter = 1000;
 opts.TolFun = 1e-08;
 opts.Weights = 1./dalpha_Ir125;
 [fitresult_sin, gof_sin] = fit( deltaks_Ir125, alphas_Ir125, ft, opts )
-fsin =(2/(fitresult_sin.t)*(fitresult_sin.p1*((sin(x_dKs*2.72./2*cos(0)).^2)+(sin(x_dKs*2.72./2*cos(60)).^2)+(sin(x_dKs*2.72./2*cos(120)).^2)+(sin(x_dKs*2.72./2*cos(180)).^2)+(sin(x_dKs*2.72./2*cos(240)).^2)+(sin(x_dKs*2.72./2*cos(300)).^2))+((1-fitresult_sin.p1)*((sin(x_dKs*4.71./2*cos(30)).^2)+(sin(x_dKs*4.71./2*cos(90)).^2)+(sin(x_dKs*4.71./2*cos(150)).^2)+(sin(x_dKs*4.71./2*cos(210)).^2)+(sin(x_dKs*4.71./2*cos(270)).^2)+(sin(x_dKs*4.71./2*cos(330)).^2)))));
+fsin =(2/(fitresult_sin.t)*(fitresult_sin.p1*((sin(x_dKs*2.72./2*cos(30)).^2)+(sin(x_dKs*2.72./2*cos(90)).^2)+(sin(x_dKs*2.72./2*cos(150)).^2)+(sin(x_dKs*2.72./2*cos(210)).^2)+(sin(x_dKs*2.72./2*cos(270)).^2)+(sin(x_dKs*2.72./2*cos(330)).^2))+((1-fitresult_sin.p1)*((sin(x_dKs*4.71./2*cos(0)).^2)+(sin(x_dKs*4.71./2*cos(60)).^2)+(sin(x_dKs*4.71./2*cos(120)).^2)+(sin(x_dKs*4.71./2*cos(180)).^2)+(sin(x_dKs*4.71./2*cos(240)).^2)+(sin(x_dKs*4.71./2*cos(300)).^2)))));
 plot(x_dKs,fsin,'color',[0.4660 0.6740 0.1880])
 set(gca,'LineWidth',1.7,'FontSize',12,'Box', 'on');
 xlabel('$\Delta K$(\AA$^{-1}$)');  ylabel('$\alpha$ (ps$^{-1}$)');
+
+
+
+%Diffusion values
+tau = fitresult_sin.t*1e-12 %in s
+p1 = fitresult_sin.p1; 
+p2 = (1-fitresult_sin.p1); 
+dtau = abs(ci_sin(1,1)-ci_sin(2,1))/2*1e-12
+dp = abs(ci_sin(1,2)-ci_sin(2,2))/2
+ln = 2.72*10^(-10) %distance to nearest neighbour in m
+lnn = 4.71*10^(-10) %distance to nearest neighbour in m
+length_avg = p1*ln+(p2*lnn)
+dlength_avg = sqrt((ln*dp)^2+(lnn*dp)^2) %Through error proporgation
+diffusion_cst = (1/(4*tau))*length_avg^2
+ddiffusion_cst = sqrt(((length_avg^2/(4*tau^2))*dtau)^2+(((length_avg/(2*tau))*(dlength_avg))^2)) %through error proporgation
+
+
 
 subplot(2,3,2)
 GrIrCurve = semilogx(tseGrIr125_dK1,PmagGrIr125_dK1,'o','color',[0 0.4470 0.7410]);
