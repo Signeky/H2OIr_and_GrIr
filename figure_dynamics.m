@@ -24,10 +24,7 @@ for i=1:length(fileListIr125)
     ft = fittype( 'a*exp(-b*x)+c', 'independent', 'x', 'dependent', 'y' );
     opts = fitoptions( ft );
     opts.Display = 'Off';
-%     opts.Lower = [0 0 0];
-%     opts.StartPoint = [0.4 0.01 0];
-%     opts.Upper = [1 0.4 PmagIr125(end)];
-%     
+
     opts.Lower = [0 0 0];
     opts.StartPoint = [0.4 0.01 min(PmagIr125)];
     opts.Upper = [1 0.5 0.6];
@@ -237,17 +234,17 @@ xlabel('$\Delta K$(\AA$^{-1}$)');  ylabel('$\alpha$ (ps$^{-1}$)');
 
 
 %Diffusion values
-tau = fitresult_sin.t*1e-12 %in s
-p1 = fitresult_sin.p1; 
-p2 = (1-fitresult_sin.p1); 
-dtau = abs(ci_sin(1,1)-ci_sin(2,1))/2*1e-12
-dp = abs(ci_sin(1,2)-ci_sin(2,2))/2
-ln = 2.72*10^(-10) %distance to nearest neighbour in m
-lnn = 4.71*10^(-10) %distance to nearest neighbour in m
-length_avg = p1*ln+(p2*lnn)
-dlength_avg = sqrt((ln*dp)^2+(lnn*dp)^2) %Through error proporgation
-diffusion_cst = (1/(4*tau))*length_avg^2
-ddiffusion_cst = sqrt(((length_avg^2/(4*tau^2))*dtau)^2+(((length_avg/(2*tau))*(dlength_avg))^2)) %through error proporgation
+tau = fitresult_sin.t*1e-12; %in s
+p1 = fitresult_sin.p1;
+p2 = (1-fitresult_sin.p1);
+dtau = abs(ci_sin(1,1)-ci_sin(2,1))/2*1e-12;
+dp = abs(ci_sin(1,2)-ci_sin(2,2))/2;
+ln = 2.72*10^(-10); %distance to nearest neighbour in m
+lnn = 4.71*10^(-10); %distance to nearest neighbour in m
+length_avg = p1*ln+(p2*lnn);
+dlength_avg = sqrt((ln*dp)^2+(lnn*dp)^2+(2*ln*lnn*(-1)*dp*dp)); %Through error proporgation, taking into acount that p1 and p2 is correlated
+diffusion_cst = (1/(4*tau))*length_avg^2;
+ddiffusion_cst = sqrt(((length_avg^2/(4*tau^2))*dtau)^2+(((-length_avg/(2*tau))^2*(dlength_avg)^2))); %through error proporgation
 
 
 
