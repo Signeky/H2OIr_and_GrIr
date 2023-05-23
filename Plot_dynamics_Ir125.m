@@ -89,7 +89,7 @@ grid on;
 hold on
 
 
-%Fit alphas to the CE model 
+%% Fit alphas to the CE model 
 [deltaks_Ir125, alphas_Ir125] = prepareCurveData(dKsIr125_sorted,alpha_Ir125);
 %ft = fittype( '2/(t)*((p1*sin(x*2.72./2*cos(0)).^2)+(p1*sin(x*2.72./2*cos(60)).^2)+(p1*sin(x*2.72./2*cos(120)).^2)+(p1*sin(x*2.72./2*cos(180)).^2)+(p1*sin(x*2.72./2*cos(240)).^2)+(p1*sin(x*2.72./2*cos(300)).^2)+((1-p1)*sin(x*4.71./2*cos(30)).^2)+((1-p1)*sin(x*4.71./2*cos(90)).^2)+((1-p1)*sin(x*4.71./2*cos(150)).^2)+((1-p1)*sin(x*4.71./2*cos(210)).^2)+((1-p1)*sin(x*4.71./2*cos(270)).^2)+((1-p1)*sin(x*4.71./2*cos(330)).^2))', 'independent', 'x', 'dependent', 'y', 'coefficients',{'t','p1'} );                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 fittype( '2/(t)*((p1*sin(x*2.72./2*cos(30)).^2)+(p1*sin(x*2.72./2*cos(90)).^2)+(p1*sin(x*2.72./2*cos(150)).^2)+(p2*sin(x*4.71./2).^2)+(p2*sin(x*4.71./2*cos(60)).^2)+(p2*sin(x*4.71./2*cos(120)).^2))', 'independent', 'x', 'dependent', 'y', 'coefficients',{'t','p1','p2'} );
 %This shoould be correct fit equation
@@ -106,8 +106,21 @@ opts.Weights = 1./dalpha_Ir125;
 
 [fitresult_sin, gof_sin] = fit( deltaks_Ir125, alphas_Ir125, ft, opts )
 x_dKs = linspace(0,3.2);
-fsin =(2/(fitresult_sin.t)*(fitresult_sin.p1*((sin(x_dKs*2.72./2*cos(0)).^2)+(sin(x_dKs*2.72./2*cos(60)).^2)+(sin(x_dKs*2.72./2*cos(120)).^2)+(sin(x_dKs*2.72./2*cos(180)).^2)+(sin(x_dKs*2.72./2*cos(240)).^2)+(sin(x_dKs*2.72./2*cos(300)).^2))+((1-fitresult_sin.p1)*((sin(x_dKs*4.71./2*cos(30)).^2)+(sin(x_dKs*4.71./2*cos(90)).^2)+(sin(x_dKs*4.71./2*cos(150)).^2)+(sin(x_dKs*4.71./2*cos(210)).^2)+(sin(x_dKs*4.71./2*cos(270)).^2)+(sin(x_dKs*4.71./2*cos(330)).^2)))));
+fsin =(2/(fitresult_sin.t)*(fitresult_sin.p1*((sin(x_dKs*2.72./2*cos(30)).^2)+(sin(x_dKs*2.72./2*cos(90)).^2)+(sin(x_dKs*2.72./2*cos(150)).^2)+(sin(x_dKs*2.72./2*cos(210)).^2)+(sin(x_dKs*2.72./2*cos(270)).^2)+(sin(x_dKs*2.72./2*cos(330)).^2))+((1-fitresult_sin.p1)*((sin(x_dKs*4.71./2*cos(0)).^2)+(sin(x_dKs*4.71./2*cos(60)).^2)+(sin(x_dKs*4.71./2*cos(120)).^2)+(sin(x_dKs*4.71./2*cos(180)).^2)+(sin(x_dKs*4.71./2*cos(240)).^2)+(sin(x_dKs*4.71./2*cos(300)).^2)))));
 plot(x_dKs,fsin,'color','#e7b318')
+
+%Diffusion values
+tau = fitresult_sin.t*1e-12 %in s
+p1 = fitresult_sin.p1; 
+p2 = (1-fitresult_sin.p1); 
+dtau = abs(ci_sin(1,1)-ci_sin(2,1))/2*1e-12
+dp = abs(ci_sin(1,2)-ci_sin(2,2))/2
+ln = 2.72*10^(-10) %distance to nearest neighbour in m
+lnn = 4.71*10^(-10) %distance to nearest neighbour in m
+length_avg = p1*ln+(p2*lnn)
+dlength_avg = sqrt((ln*dp)^2+(lnn*dp)^2) %Through error proporgation
+diffusion_cst = (1/(4*tau))*length_avg^2
+ddiffusion_cst = sqrt(((length_avg^2/(4*tau^2))*dtau)^2+(((length_avg/(2*tau))*(dlength_avg))^2)) %through error proporgation
 
 
 
