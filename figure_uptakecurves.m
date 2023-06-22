@@ -4,11 +4,9 @@
 
 clear all; clf
 addpath Uptake
-%pressure measured from extraction gauge 145 K file is corrupt and does not show.  
 fileList = {'sm006779.mat','sm006784.mat','sm006785.mat','sm006786.mat'};
 temp_list = {'120 K', '130 K', '135 K', '140 K','150 K','160 K'};
 pre_t_list = {480, 230, 280,150, 45, 68};
-%max_p_list = {'1.1E-8 cst','1.1E-8 cst','1.2E-8 spike?','1.4E-8 cst ','3.3E-8 slw','2E-8 cst','','112 K','','','',''};
 
 startExp = {421,204,254,124};
 figure=figure('units','centimeters','position',[4,2,16,14],'color','white','DefaultLineLineWidth',2,'DefaultTextFontSize',18);

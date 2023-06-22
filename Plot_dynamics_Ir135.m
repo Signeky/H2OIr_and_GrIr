@@ -1,8 +1,10 @@
 
 clear all; close all; 
 
-x = linspace(2.8,800,800);
 
+%% Load and fit data 
+
+x = linspace(2.8,800,800);
 
 addpath Dynamics\Ir_and_GrIr
 fileListIr135 = {'dy019490.mat','dy019491.mat','dy019492.mat','dy019493.mat','dy019494.mat','dy019495.mat','dy019496.mat','dy019497.mat','dy019498.mat','dy019499.mat','dy019500.mat','dy019501.mat','dy019502.mat','dy019503'};  
@@ -11,7 +13,7 @@ fileListIr135 = {'dy019490.mat','dy019491.mat','dy019492.mat','dy019493.mat','dy
 for i = 1:length(fileListIr135)
     load(fileListIr135{i})
     dKIr135 = abs(meas.dK);
-    dKsIr135(i) = dKIr135; 
+    dKsIr135(i) = dKIr135;
   
 end
 [dKsIr135_sorted, dKsIr135_order] = sort(dKsIr135);
@@ -72,7 +74,8 @@ for i=1:length(newfileListIr135)
 end
 
     
-%Figure summarising fit parameters
+%% Figure summarising fit parameters
+
 figure2=figure('units','centimeters','position',[5,3,30,15],'color','white','DefaultLineLineWidth',1.5);
 set(figure2,'DefaultLineLineWidth',2); axes2 = axes('Parent',figure2,'LineWidth',1.5,'FontSize',16);
 box(axes2,'on'); hold(axes2,'all');
