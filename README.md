@@ -29,5 +29,5 @@ Information on the measurement conditions is included in the MATLAB data files.
 	figure_DiffractionGrIr.m MATLAB script to load and analyse the diffraction scan on GrIr(111) 
 	
 	/Diffraction/ raw data of diffraction scans
-
+	/Diffraction/ calibration files to calculate beam energy
 
