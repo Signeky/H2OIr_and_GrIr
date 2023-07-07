@@ -5,7 +5,7 @@ fileList = {'sm006779.mat','sm006784.mat','sm006785.mat','sm006786.mat'};
 temp_list = {'120 K', '130 K', '135 K', '140 K','150 K','160 K'};
 pre_t_list = {480, 230, 280,150, 45, 68}; %Time before deposition starts
 
-startExp = {421,204,254,124};
+startExp = {421,204,254,124}; %Where water exposure starts
 figure=figure('units','centimeters','position',[4,2,16,14],'color','white','DefaultLineLineWidth',2,'DefaultTextFontSize',18);
 
 for i=1:length(fileList)
@@ -19,8 +19,7 @@ for i=1:length(fileList)
 
     temperature = mean(meas.samp_temp(meas.t>pre_t));
     
-    dexposure = ((pressure(1:end-1)+pressure(2:end))/2-pre_press).*(meas.t(2:end)-meas.t(1:end-1)); %-pre_press causes disortoion
-    
+    dexposure = ((pressure(1:end-1)+pressure(2:end))/2-pre_press).*(meas.t(2:end)-meas.t(1:end-1)); 
     
     exposure = cumsum(dexposure);
     
