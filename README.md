@@ -11,7 +11,8 @@ dynamics measurements
 	figure_Arrhenius.m MATLAB script to load raw polarisation on Ir(111) data and calculate the Arrhenius values
 	
 	/Dynamics/Ir_and_GrIr	folder containing polarisation curves of the raw spin-echo measurements for the Ir(111) and GrIr(111) substrates
-	/Dynamics/GrNi		data downloaded from https://www.repository.cam.ac.uk/items/634ec923-8232-41d1-b0d0-f41eeca0cfa9
+	/Dynamics/GrNi		data from  DOI https://doi.org/10.1038/s41467-021-23226-5
+
     
     
 water uptake 
