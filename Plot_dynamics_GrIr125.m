@@ -1,9 +1,8 @@
-%Load GrIr(111) 125 K data.. 
 clear all; close all; 
 
-%% Load and fit data 
-
 x = linspace(2.8,800,800);
+
+%% Load and fit data 
 
 addpath Dynamics\Ir_and_GrIr
 fileListGrIr125 = {'dy019379.mat','dy019380.mat','dy019381.mat','dy019382.mat','dy019383.mat','dy019384.mat','dy019385.mat','dy019386.mat','dy019387.mat','dy019388.mat','dy019389.mat','dy019390.mat','dy019391.mat','dy019392.mat','dy019393.mat','dy019394.mat','dy019395.mat','dy019396.mat','dy019397.mat','dy019398.mat'};  
