@@ -38,8 +38,7 @@ for i=1:length(fileListIr125)
     alpha_Ir125(i)=fitresult.b;
     dalpha_Ir125(i)=abs(ci(1,2)-ci(2,2))/2;
     
-    %Store data and fit paramters at dK = 0.7 
-
+    %Store data and fit parameters at dK = 0.7 
     if (dKIr125(i) < 0.71) && (dKIr125(i) > 0.69);    
         alpha_Ir125_07 = alpha_Ir125(i); 
         dalpha_Ir125_07 = dalpha_Ir125(i);
@@ -84,7 +83,7 @@ for i=1:length(fileListIr135)
     alpha_Ir135(i)=fitresult.b;
     dalpha_Ir135(i)=abs(ci(1,2)-ci(2,2))/2;
     
-    %Store data and fit paramters at dK = 0.7
+    %Store data and fit parameters at dK = 0.7
     if (dKIr135(i) < 0.71) && (dKIr135(i) > 0.69);    
         alpha_Ir135_07 = alpha_Ir135(i); 
         dalpha_Ir135_07 = dalpha_Ir135(i);
@@ -150,7 +149,7 @@ xlabel('1/T (K^{-1})')
 ylabel('ln(\alpha) (ns^{-1})')
 
 
-%% Alternatively, the activation energy can be calculated using alpha_0 = (5 +- 1) ps^(-1) found for GrNi(111) 
+%% Alternatively, the activation energy can be calculated using an abritrary value, say alpha_0 = (5 +- 1) ps^(-1) found for GrNi(111) 
 
 alpha0_GrNi = 5000; %in ns^(-1)
 alpha0_GrNi_error = 1000; %in ns^(-1)
