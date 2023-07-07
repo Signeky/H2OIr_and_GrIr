@@ -267,7 +267,7 @@ subplot(2,3,5)
 plot(dKGrIr125,alpha_GrIr125,'bo','MarkerSize',6,'color',["#045388"]);
 hold on
 errorbar(dKGrIr125,alpha_GrIr125,dalpha_GrIr125,'LineStyle','None','color',[.4 .4 .4]);
-xlim([0 3.2]);%ylim([-0.001 0.015]);
+xlim([0 3.2]);ylim([0 0.0005]);
 set(gca,'LineWidth',1.7,'FontSize',12,'Box', 'on');
 xlabel('$\Delta K$(\AA$^{-1}$)');
 
