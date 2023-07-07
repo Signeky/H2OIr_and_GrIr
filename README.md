@@ -19,11 +19,11 @@ Information on the measurement conditions is included in the MATLAB data files.
 ### Water uptake curves
 	
 	figure_uptakecurves.m MATLAB script to load and analyse the raw data of the measured uptake curves and produce the uptake figure
-	
+	sfigure_dosing150.m MATLAB script to load and analyse the water deposition on GrIr(111) at 150 K
 	/Uptake/ raw data of uptake curves 
 
 
-### diffraction measurements 
+### Diffraction measurements 
 
 	figure_DiffractionIr.m MATLAB script to load and analyse the diffraction scan on Ir(111) 
 	figure_DiffractionGrIr.m MATLAB script to load and analyse the diffraction scan on GrIr(111) 
