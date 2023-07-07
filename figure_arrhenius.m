@@ -114,7 +114,7 @@ BoltzmannConstant=1.3806504E-23;
 
 %Prepare curve for dK = 0.7
 x = [1/xh, 1/xc];
-y = [log(yh), log(yc)]
+y = [log(yh), log(yc)];
 y_error = [yh_error/yh, yc_error/yc]; %Error through error propagation 
 
 %Calculate slope
