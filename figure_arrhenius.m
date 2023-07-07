@@ -155,7 +155,7 @@ ylabel('ln(\alpha) (ns^{-1})')
 alpha0_GrNi = 5000; %in ns^(-1)
 alpha0_GrNi_error = 1000; %in ns^(-1)
 
-%At 0.7
+
 slope_alternative = (y(2)-log(alpha0_GrNi))/x(2);
 Ea_alternative = abs(slope_alternative*BoltzmannConstant*6.24150974E21);
 Ea_alternative_error = sqrt(((yc_error/yc)*6.24150974E21*BoltzmannConstant*125)^2+((alpha0_GrNi_error/alpha0_GrNi)*6.24150974E21*BoltzmannConstant*125)^2);
