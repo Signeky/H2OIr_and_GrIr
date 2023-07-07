@@ -4,9 +4,9 @@ Information on the measurement conditions is included in the MATLAB data files.
 
 ### Dynamics measurements
 
-Plot_dynamics_Ir125.m MATLAB 	script to load and analyse the raw polarised data collected on Ir(111) (GM azimuth, 125 K)
-Plot_dynamics_Ir135.m MATLAB 	script to load and analyse the raw polarised data on Ir(111)  (GM azimuth, 135 K)
-Plot_dynamics_GrIr125.m MATLAB 	script to load and analyse the raw polarised data collected on GrIr(111) (GM azimuth, 125 K)
+Plot_dynamics_Ir125.m MATLAB 	script to load and analyse the raw polarisation data on Ir(111) (GM azimuth, 125 K)
+Plot_dynamics_Ir135.m MATLAB 	script to load and analyse the raw polarisation data on Ir(111)  (GM azimuth, 135 K)
+Plot_dynamics_GrIr125.m MATLAB 	script to load and analyse the raw polarisation data on GrIr(111) (GM azimuth, 125 K)
   
 figure_dynamics.m MATLAB script to load and analyse the raw polarisation data for all substrates and produce a dynamic figure 
 figure_Arrhenius.m MATLAB script to load raw polarisation on Ir(111) data and calculate the Arrhenius values
