@@ -1,5 +1,5 @@
 ## Helium-3 spin-echo data for water on iridium(111) and graphene/iridium(111)
-This project includes raw helium-3 spin-echo data and the analysis of the adsorption and dynamics of water on iridium(111) and graphene/iridium(111). MatLab R2021a Update 4 is used for the analysis. 
+This project includes raw and analysed helium-3 spin-echo data on the water adsorption and dynamics of water on iridium(111) and graphene/iridium(111). MatLab R2021a Update 4 is used for the analysis. 
 Information on the measurement conditions is included in the MATLAB data files. 
 
 ### Dynamics measurements
