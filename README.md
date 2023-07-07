@@ -1,4 +1,4 @@
-## HeSE data for water on iridium(111) and Gr/iridium(111)
+## Helium-3 spin-echo data for water on iridium(111) and graphene/iridium(111)
 This project includes raw helium-3 spin-echo data and the analysis of the adsorption and dynamics of water on iridium(111) and graphene/iridium(111). MatLab R2021a Update 4 is used for the analysis. 
 Information on the measurement conditions is included in the MATLAB data files. 
 
@@ -12,7 +12,7 @@ figure_dynamics.m MATLAB script to load and analyse the raw polarisation data fo
 figure_Arrhenius.m MATLAB script to load raw polarisation on Ir(111) data and calculate the Arrhenius values
 	
 /Dynamics/Ir_and_GrIr	folder containing polarisation curves of the raw spin-echo measurements for the Ir(111) and GrIr(111) substrates
-/Dynamics/GrNi		data from  DOI https://doi.org/10.1038/s41467-021-23226-5
+/Dynamics/GrNi		data downloaded from https://doi.org/10.1038/s41467-021-23226-5
 
     
     
