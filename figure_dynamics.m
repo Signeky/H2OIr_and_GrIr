@@ -283,7 +283,7 @@ set(gca,'LineWidth',1.7,'FontSize',12,'Box', 'on');
 
 xlabel('Spin-Echo Time (ps)')
 
-subplot(2,3,6) %%Values copied from https://doi.org/10.1038/s41467-021-23226-5
+subplot(2,3,6) 
 plot(dK_GrNi125,alpha_GrNi125,'bo','MarkerSize',6,'color',["#ad4214"]);
 hold on
 errorbar(dK_GrNi125,alpha_GrNi125,dalpha_GrNi125,'LineStyle','None','color',[.4 .4 .4]);
