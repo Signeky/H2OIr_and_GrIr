@@ -1,7 +1,4 @@
-% use the following to determine the pre-time
-%
-% clf; load('sm006786.mat'); semilogy(meas.t,meas.samp_pressure_e,meas.t,meas.counts) 
-% 
+
 clear all; clf
 
 
