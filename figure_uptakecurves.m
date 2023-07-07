@@ -3,9 +3,9 @@ clear all; clf
 addpath Uptake
 fileList = {'sm006779.mat','sm006784.mat','sm006785.mat','sm006786.mat'};
 temp_list = {'120 K', '130 K', '135 K', '140 K','150 K','160 K'};
-pre_t_list = {480, 230, 280,150, 45, 68}; %Time before deposition starts
+pre_t_list = {480, 230, 280,150, 45, 68}; %A time before water deposition starts
 
-startExp = {421,204,254,124}; %Where water exposure starts
+startExp = {421,204,254,124}; %Here water deposition starts
 figure=figure('units','centimeters','position',[4,2,16,14],'color','white','DefaultLineLineWidth',2,'DefaultTextFontSize',18);
 
 for i=1:length(fileList)
