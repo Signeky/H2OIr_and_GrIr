@@ -5,7 +5,7 @@ clear all; clf
 %File info
 dataFile = 'Sm006788.mat';
 temperature = '150 K';
-pre_t = 45;
+pre_t = 45; %Time before exposure
 
 
 %Define figure
