@@ -110,7 +110,7 @@ end
 
 
 addpath Dynamics\GrNi
-%% Load and fit data GrNi(111) 125 K (Copied from Tamtögl et al., https://www.repository.cam.ac.uk/items/634ec923-8232-41d1-b0d0-f41eeca0cfa9)
+%% Load and fit data GrNi(111) 125 K (downloaded from https://doi.org/10.1038/s41467-021-23226-5)
 
 fileListGrNi125 = [10607:10620,10622:10626,10627:10632,10634:10638,10640,10641,10643,10644,10621];
 
@@ -283,7 +283,7 @@ set(gca,'LineWidth',1.7,'FontSize',12,'Box', 'on');
 
 xlabel('Spin-Echo Time (ps)')
 
-subplot(2,3,6) %%Values copied from Tamtogl et al 
+subplot(2,3,6) %%Values copied from https://doi.org/10.1038/s41467-021-23226-5
 plot(dK_GrNi125,alpha_GrNi125,'bo','MarkerSize',6,'color',["#ad4214"]);
 hold on
 errorbar(dK_GrNi125,alpha_GrNi125,dalpha_GrNi125,'LineStyle','None','color',[.4 .4 .4]);
