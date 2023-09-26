@@ -1,8 +1,8 @@
-%Load GrIr(111) 125 K data.. 
 clear all; close all; 
 
 x = linspace(2.8,800,800);
 
+%% Load and fit data 
 
 addpath Dynamics\Ir_and_GrIr
 fileListGrIr125 = {'dy019379.mat','dy019380.mat','dy019381.mat','dy019382.mat','dy019383.mat','dy019384.mat','dy019385.mat','dy019386.mat','dy019387.mat','dy019388.mat','dy019389.mat','dy019390.mat','dy019391.mat','dy019392.mat','dy019393.mat','dy019394.mat','dy019395.mat','dy019396.mat','dy019397.mat','dy019398.mat'};  
@@ -38,10 +38,11 @@ for i=1:length(newfileListGrIr125)
     ft = fittype( 'a*exp(-b*x)+c', 'independent', 'x', 'dependent', 'y' );
     opts = fitoptions( ft );
     opts.Display = 'Off';
-    %Force the fit to decay to find upper limit 
+    %%Force the fit to decay to find upper limit 
     opts.Lower = [0 0 PmagGrIr125(end)/2]; 
     opts.StartPoint = [0.5 0.01 PmagGrIr125(end)/2];    
     opts.Upper = [1 0.5 PmagGrIr125(end)/2];
+   
     opts.MaxFunEvals = 1000;
     opts.MaxIter = 1000;
     opts.TolFun = 1e-08; 
@@ -66,7 +67,7 @@ for i=1:length(newfileListGrIr125)
     subplot(4,5,i)
     semilogx(tseGrIr125, PmagGrIr125,'s','color','#0072bd','MarkerSize',5);
     title(['\DeltaK = ' num2str(dKGrIr125,2)]);
-    xlim([0,705]); ylim([0.98*min(yData),max(yData)*1.02]);
+    xlim([0,800]); ylim([0.98*min(yData),max(yData)*1.02]);
     hold on;
     semilogx(x, fitresult.a*exp(-fitresult.b*x)+fitresult.c,'color','#045388')
     
@@ -77,7 +78,7 @@ for i=1:length(newfileListGrIr125)
 end
 
     
-%Figure summarising fit parameters
+%% Figure summarising fit parameters
 figure2=figure('units','centimeters','position',[5,3,30,15],'color','white','DefaultLineLineWidth',1.5);
 set(figure2,'DefaultLineLineWidth',2); axes2 = axes('Parent',figure2,'LineWidth',1.5,'FontSize',16);
 box(axes2,'on'); hold(axes2,'all');
@@ -86,7 +87,7 @@ subplot(2,2,1)
 set(gca,'LineWidth',2,'FontSize',14,'Layer','top','Box','on'); hold(gca,'all');
 plot(dKsGrIr125_sorted,alpha_GrIr125,'bo','color','#045388','MarkerSize',8);
 errorbar(dKsGrIr125_sorted,alpha_GrIr125,dalpha_GrIr125,'color',[0.4 0.4 0.4],'LineStyle','None');
-%ylim([-0.001 0.017]);
+ylim([0 0.0005]);
 grid on; 
 xlabel('\DeltaK (Å^{-1})');  ylabel('\alpha (ps^{-1})');
 

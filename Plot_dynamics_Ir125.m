@@ -1,6 +1,8 @@
 
 clear all; close all; 
 
+%% Load and fit data 
+
 x = linspace(2.8,800,800);
 
 
@@ -43,6 +45,9 @@ for i=1:length(newfileListIr125)
     opts.MaxIter = 1000;
     opts.TolFun = 1e-08; 
     
+
+    
+    
     [fitresult, gof] = fit( xData, yData, ft, opts );
     Rsquare_Ir125(i)=gof.rsquare;
     
@@ -74,7 +79,8 @@ for i=1:length(newfileListIr125)
 end
 
     
-%Figure summarising fit parameters
+%% Figure summarising fit parameters
+
 figure2=figure('units','centimeters','position',[5,3,30,15],'color','white','DefaultLineLineWidth',1.5);
 set(figure2,'DefaultLineLineWidth',2); axes2 = axes('Parent',figure2,'LineWidth',1.5,'FontSize',16);
 box(axes2,'on'); hold(axes2,'all');
@@ -84,32 +90,58 @@ set(gca,'LineWidth',2,'FontSize',14,'Layer','top','Box','on'); hold(gca,'all');
 plot(dKsIr125_sorted,alpha_Ir125,'bo','color','#286444','MarkerSize',8);
 errorbar(dKsIr125_sorted,alpha_Ir125,dalpha_Ir125,'color',[0.4 0.4 0.4],'LineStyle','None');
 ylim([-0.001 0.017]);
-
+xlim([0 3.2]);
 grid on;
 hold on
 
 
 %Fit alphas to the CE model 
 [deltaks_Ir125, alphas_Ir125] = prepareCurveData(dKsIr125_sorted,alpha_Ir125);
-ft = fittype( '2/(t)*((p1*sin(x*2.72./2*cos(0)).^2)+(p1*sin(x*2.72./2*cos(60)).^2)+(p1*sin(x*2.72./2*cos(120)).^2)+(p1*sin(x*2.72./2*cos(180)).^2)+(p1*sin(x*2.72./2*cos(240)).^2)+(p1*sin(x*2.72./2*cos(300)).^2)+((1-p1)*sin(x*4.71./2*cos(30)).^2)+((1-p1)*sin(x*4.71./2*cos(90)).^2)+((1-p1)*sin(x*4.71./2*cos(150)).^2)+((1-p1)*sin(x*4.71./2*cos(210)).^2)+((1-p1)*sin(x*4.71./2*cos(270)).^2)+((1-p1)*sin(x*4.71./2*cos(330)).^2))', 'independent', 'x', 'dependent', 'y', 'coefficients',{'t','p1'} );                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 fittype( '2/(t)*((p1*sin(x*2.72./2*cos(30)).^2)+(p1*sin(x*2.72./2*cos(90)).^2)+(p1*sin(x*2.72./2*cos(150)).^2)+(p2*sin(x*4.71./2).^2)+(p2*sin(x*4.71./2*cos(60)).^2)+(p2*sin(x*4.71./2*cos(120)).^2))', 'independent', 'x', 'dependent', 'y', 'coefficients',{'t','p1','p2'} );
+
+ft = fittype( ['2/(t)*( (sin(x*2.72./2*cosd(30)).^2)+(sin(x*2.72./2*cosd(90)).^2)+(sin(x*2.72./2*cosd(150)).^2)+(sin(x*2.72./2*cosd(210)).^2)+' ...
+    '(sin(x*2.72./2*cosd(270)).^2)+(sin(x*2.72./2*cosd(330)).^2) )'], 'independent', 'x', 'dependent', 'y', 'coefficients',{'t'} );
+
+
 opts = fitoptions( ft );
 opts.Display = 'Off';
-opts.Lower = [65 0 ];
-opts.StartPoint = [650 0.2 ];
-opts.Upper = [10000 1];
+opts.Lower = [65];
+opts.StartPoint = [1300];
+opts.Upper = [2000];
 opts.MaxFunEvals = 1000;
 opts.MaxIter = 1000;
 opts.TolFun = 1e-08;
 opts.Weights = 1./dalpha_Ir125;
-
 [fitresult_sin, gof_sin] = fit( deltaks_Ir125, alphas_Ir125, ft, opts )
+
+ci_sin = confint(fitresult_sin,0.68);
 x_dKs = linspace(0,3.2);
-fsin =(2/(fitresult_sin.t)*(fitresult_sin.p1*((sin(x_dKs*2.72./2*cos(0)).^2)+(sin(x_dKs*2.72./2*cos(60)).^2)+(sin(x_dKs*2.72./2*cos(120)).^2)+(sin(x_dKs*2.72./2*cos(180)).^2)+(sin(x_dKs*2.72./2*cos(240)).^2)+(sin(x_dKs*2.72./2*cos(300)).^2))+((1-fitresult_sin.p1)*((sin(x_dKs*4.71./2*cos(30)).^2)+(sin(x_dKs*4.71./2*cos(90)).^2)+(sin(x_dKs*4.71./2*cos(150)).^2)+(sin(x_dKs*4.71./2*cos(210)).^2)+(sin(x_dKs*4.71./2*cos(270)).^2)+(sin(x_dKs*4.71./2*cos(330)).^2)))));
-plot(x_dKs,fsin,'color','#e7b318')
 
 
+fsin =(2/(fitresult_sin.t)*((sin(x_dKs*2.72./2*cosd(30)).^2)+(sin(x_dKs*2.72./2*cosd(90)).^2)+(sin(x_dKs*2.72./2*cosd(150)).^2)+ ...
+    (sin(x_dKs*2.72./2*cosd(210)).^2)+(sin(x_dKs*2.72./2*cosd(270)).^2)+(sin(x_dKs*2.72./2*cosd(330)).^2)));
 
-xlabel('\DeltaK (Å^{-1})');  ylabel('\alpha (ps^{-1})');
+
+plot(x_dKs,fsin,'color',["#daa711"])
+set(gca,'LineWidth',1.7,'FontSize',12,'Box', 'on');
+xlabel('$\Delta K$(\AA$^{-1}$)');  ylabel('$\alpha$ (ps$^{-1}$)');
+
+%Calculation of the diffusion values
+tau = fitresult_sin.t*1e-12; %in s
+
+dtau = abs(ci_sin(1,1)-ci_sin(2,1))/2*1e-12;
+
+l1 = 2.72*10^(-10); %distance to nearest neighbour in m
+dl1 = 0.03*10^(-10); %take from diffraction scan
+diffusion_cst = (1/(4*tau))*l1^2;
+ddiffusion_cst = sqrt(((l1^2/(4*tau^2))*dtau)^2+(((-l1/(2*tau))^2*(dl1)^2))); %through error proporgation
+
+fprintf(['resident time tau = (%2.1f ' char(177) ' %2.1f) ps'],tau*10^(12), dtau*10^(12))
+
+fprintf(['\njump length = (%2.1f ' char(177) ' %2.1f) Å'],l1*10^(10), dl1*10^(10))
+
+fprintf(['\nDiffusion constant = (%2.0f ' char(177) ' %2.0f) pm^2/s\n'],diffusion_cst*10^(12), ddiffusion_cst*10^(12))
+
+
 
 subplot(2,2,2)
 set(gca,'LineWidth',2,'FontSize',14,'Layer','top','Box','on'); hold(gca,'all');
