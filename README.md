@@ -1,8 +1,5 @@
 ## Helium-3 spin-echo data for water on iridium(111) and graphene/iridium(111)
-This project includes raw and analysed helium-3 spin-echo data on the water adsorption and dynamics of water on iridium(111) and graphene/iridium(111). 
-
-MatLab R2021a Update 4 is used for the analysis. The Signal Processing Toolbox was added to the basic installation.
-
+This project includes raw and analysed helium-3 spin-echo data on the water adsorption and dynamics of water on iridium(111) and graphene/iridium(111). MatLab R2021a Update 4 is used for the analysis. 
 Information on the measurement conditions is included in the MATLAB data files. 
 
 ### Dynamics measurements
@@ -31,6 +28,6 @@ Information on the measurement conditions is included in the MATLAB data files.
 	figure_DiffractionIr.m MATLAB script to load and analyse the diffraction scan on Ir(111) 
 	figure_DiffractionGrIr.m MATLAB script to load and analyse the diffraction scan on GrIr(111) 
 	
-	/Diffraction/... raw data diffraction scans
-	/Calibration/... files to calculate beam energy
+	/Diffraction/ raw data of diffraction scans
+	/Diffraction/ calibration files to calculate beam energy
 

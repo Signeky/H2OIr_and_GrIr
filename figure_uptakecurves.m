@@ -14,24 +14,23 @@ for i=1:length(fileList)
     
     startIndex = cell2mat(startExp(i)); 
     
-    pressure = meas.samp_pressure_e; %pressure extraction gauge  
+    pressure = meas.samp_pressure_e; %pressure extraction gauge    
     pre_press = mean(pressure(meas.t<pre_t)); %average pressure before deposition 
 
     temperature = mean(meas.samp_temp(meas.t>pre_t));
-
+    
     dexposure = ((pressure(1:end-1)+pressure(2:end))/2-pre_press).*(meas.t(2:end)-meas.t(1:end-1)); 
     
     exposure = cumsum(dexposure);
-    exposure_langmuir=exposure*10^6;
-
+    
     signal = (meas.counts(1:end-1)+meas.counts(2:end))/2;
     
     %Normalise and plot from startExp
     signal = signal./signal(startIndex);
-    semilogy(exposure_langmuir(startIndex:end),signal(startIndex:end),'displayname', temp_list{i})
-    xlim([0 0.12])
-    ylabel('Normalized counts')
-    xlabel('H_2O exposure (L)')
+    semilogy(exposure(startIndex:end),signal(startIndex:end),'displayname', temp_list{i})
+    xlim([0 1.2*10^(-7)])
+    ylabel('Normalized counts (arb units)')
+    xlabel('H_2O exposure (mbar x s)')
 
 
     hold on
