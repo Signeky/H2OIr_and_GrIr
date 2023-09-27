@@ -1,6 +1,7 @@
 
 clear all; clf
 
+
 fileList = {'Diffraction/As010351.mat','Diffraction/As010354'};
 names = {'GrIr(111)','H_2O GrIr(111)'};
 
@@ -64,6 +65,7 @@ h = 6.626e-34; % Planck constant, Js
 m = 3.0160293*1.66054e-27; % Helium 3 rest mass, kg
 k = (2*pi*sqrt(2*E0*m)/h); % m^-1, incident wavector
 k = k/1e10; % A^-1
+
 disp(['k, incident wavevector, = ' num2str(k) ' A^-1'])
 
 load(fileList{1})
@@ -92,8 +94,10 @@ ind = IrGr_DK < -2.8 & IrGr_DK > -3.16;
 y = flip(IrGr_counts(ind));
 x = flip(IrGr_DK(ind));
 pks = findpeaks(y, x);
+
 G = abs(x(y == pks));
 disp(['Diffraction peak for graphene lattice spacing occurs at ' num2str(G) ' Å^-1'])
+
 a = (2*pi/G)/cosd(30); % Account for measuring along the Gamma-M direction
 disp(['Measured lattice constant of GrIr(111) = ' num2str(a) ' A'])
 

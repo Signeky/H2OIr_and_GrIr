@@ -1,6 +1,8 @@
 
 clear all; close all; 
+
 fileList = {'Diffraction/as010376.mat','Diffraction/as010377.mat'}
+
 names = {'Ir(111)','H_2O Ir(111)'};
 colourList = 'rbgcmk';
 figure=figure('units','centimeters','position',[4,2,16,14],'color','white','DefaultLineLineWidth',2,'DefaultTextFontSize',18);
@@ -46,6 +48,7 @@ h = 6.626e-34; % Planck constant, Js
 m = 3.0160293*1.66054e-27; % Helium 3 rest mass, kg
 k = (2*pi*sqrt(2*E0*m)/h); % m^-1, incident wavector
 k = k/1e10; % A^-1
+
 disp(['k, incident wavevector, = ' num2str(k) ' A^-1'])
 
 load(fileList{1})
@@ -79,9 +82,11 @@ ind = Ir_DK < -2.5 & Ir_DK > -2.9;
 y = flip(Ir_counts(ind));
 x = flip(Ir_DK(ind));
 pks = findpeaks(y, x);
+
 G = abs(x(y == pks));
 disp(['Diffraction peak for graphene lattice spacing occurs at ' num2str(G) ' Å^-1'])
 a = (2*pi/G)/cosd(30); % Account for measuring along the Gamma-M direction
+
 disp(['Measured lattice constant of Ir(111) = ' num2str(a) ' Å'])
 % Note spacing of data points is ~0.02 A^(-1), giving ~0.02 A
 % uncertainty in the lattice constant. The beam energy also drifts slightly

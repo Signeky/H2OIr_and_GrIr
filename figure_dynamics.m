@@ -222,9 +222,9 @@ hold on
 %Fit alphas to the CE model 
 [deltaks_Ir125, alphas_Ir125] = prepareCurveData(dKIr125,alpha_Ir125);
 
+
 ft = fittype( ['2/(t)*( (sin(x*2.72./2*cosd(30)).^2)+(sin(x*2.72./2*cosd(90)).^2)+(sin(x*2.72./2*cosd(150)).^2)+(sin(x*2.72./2*cosd(210)).^2)+' ...
     '(sin(x*2.72./2*cosd(270)).^2)+(sin(x*2.72./2*cosd(330)).^2) )'], 'independent', 'x', 'dependent', 'y', 'coefficients',{'t'} );
-
 
 opts = fitoptions( ft );
 opts.Display = 'Off';
@@ -270,8 +270,11 @@ GrIrCurve = semilogx(tseGrIr125_dK1,PmagGrIr125_dK1,'o','color',[0 0.4470 0.7410
 hold on 
 h = plot(x, a_GrIr125*exp(-b_GrIr125*x)+c_GrIr125)
 h.Color = ["#045388"]
-%xlim([2 800]); ylim([0.11 0.21]);
-xlim([0 7]); ylim([0 0.5]);
+
+xlim([2 800]); ylim([0.11 0.21]);
+%xlim([0 7]); ylim([0 0.5]);
+
+
 set(gca,'LineWidth',1.7,'FontSize',12,'Box', 'on'); 
 xlabel('Spin-Echo Time (ps)')
 
