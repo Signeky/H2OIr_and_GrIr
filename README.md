@@ -8,6 +8,8 @@ Information on the measurement conditions is included in the MATLAB data files.
 
 ### Dynamics measurements - Figure 2 and 3
 	figure_dynamics.m MATLAB script to load and analyse the raw polarisation data for all substrates and produce a dynamic figure 
+	NOTE: comment out line 274 and swap in line 275 to produce the inset to Figure 2b
+
 	figure_Arrhenius.m MATLAB script to load raw polarisation on Ir(111) data and calculate the Arrhenius values
 	
 	Plot_dynamics_Ir125.m MATLAB 	script to load and analyse the raw polarisation data, as a function of dK, on Ir(111) (GM azimuth, 125 K)
